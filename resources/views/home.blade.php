@@ -20,4 +20,10 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <a href="/">
+        <button class="btn btn-info">Welcome Page</button>
+    </a>
+</div>
 @endsection

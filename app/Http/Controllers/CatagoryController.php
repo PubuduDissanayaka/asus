@@ -14,7 +14,8 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-        return view('catagory.index');
+        $data = Catagory::all();
+        return view('catagory.index')->with('data',$data);
     }
 
     /**
@@ -24,7 +25,7 @@ class CatagoryController extends Controller
      */
     public function create()
     {
-        
+        return view("catagory.create");
     }
 
     /**
@@ -35,7 +36,19 @@ class CatagoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // step 1 : validate data from form
+        $this -> validate($request, array(
+            'catname' => 'required|max:255',
+        ));
+
+        // step 2 : save data to the database
+        $cat = new Catagory;
+        $cat->name = $request->catname;
+        $cat->save();
+
+        // step 3 : redirect web pages
+        $data = Catagory::all();
+        return view('catagory.index')->with('data',$data);
     }
 
     /**
@@ -44,9 +57,10 @@ class CatagoryController extends Controller
      * @param  \App\Catagory  $catagory
      * @return \Illuminate\Http\Response
      */
-    public function show(Catagory $catagory)
+    public function show($id)
     {
-        //
+        $data = Catagory::find($id);
+        return view('catagory.show')->with('data',$data);
     }
 
     /**
@@ -78,8 +92,12 @@ class CatagoryController extends Controller
      * @param  \App\Catagory  $catagory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Catagory $catagory)
+    public function destroy($id)
     {
-        //
+        $data = Catagory::find($id);
+        $data->delete();
+
+        $data = Catagory::all();
+        return view('catagory.index')->with('data',$data);
     }
 }

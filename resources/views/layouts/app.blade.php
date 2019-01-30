@@ -18,6 +18,7 @@
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nunito|Roboto+Mono|Slabo+27px|Thasadith|Ubuntu" rel="stylesheet"> 
 </head>
 <body>
@@ -34,7 +35,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        
+                        <li class="nav-item mynav">
+                            <a class="nav-link" href="/catagory/create">Create Catagory</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -80,5 +83,7 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </body>
 </html>
