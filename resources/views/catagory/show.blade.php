@@ -20,11 +20,17 @@
                 {{$data->name}}
                 <br>
                 <p><small>{{$data->created_at}}</small></p>
+                
+
                 <form action="/catagory/{{$data->id}}" method="post">
                     {{csrf_field()}}
                     {{method_field('DELETE')}}
-                    <input type="submit" value="Delete" class="btn btn-dark">
+                    <input type="submit" value="Delete Catagory" class="btn btn-dark">
                 </form>
+                <br>
+                <a href="#" class="btn btn-warning">
+                    Edit Catagory
+                </a>
             </div>
             <div class="col-sm-4"></div>
         </div>
