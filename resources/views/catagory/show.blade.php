@@ -14,23 +14,21 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                     <a href="/catagory">
-                        <button class="btn btn-danger">Back</button>
+                        <button class="btn btn-primary">Back</button>
                     </a>
                     <br><br>
-                {{$data->name}}
+                    <h2>{{$data->name}}</h2>
+                
                 <br>
                 <p><small>{{$data->created_at}}</small></p>
                 
 
-                <form action="/catagory/{{$data->id}}" method="post">
-                    {{csrf_field()}}
-                    {{method_field('DELETE')}}
-                    <input type="submit" value="Delete Catagory" class="btn btn-dark">
-                </form>
+                {!! Form::open(['action' => ['CatagoryController@destroy',$data->id],'method' =>'POST']) !!}
+                {{Form::hidden('_method','DELETE')}}
+                    <button type="submit"  class="btn btn-outline-danger"><i class="fa fa-remove"></i> Delete</button>
+                {!! Form::close() !!}
                 <br>
-                <a href="#" class="btn btn-warning">
-                    Edit Catagory
-                </a>
+                <a href="/catagory/{{$data->id}}/edit" class="btn btn-outline-info"><i class="fas fa-edit"></i> Edit</a>
             </div>
             <div class="col-sm-4"></div>
         </div>

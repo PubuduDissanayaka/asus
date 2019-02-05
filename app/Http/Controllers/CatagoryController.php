@@ -69,9 +69,10 @@ class CatagoryController extends Controller
      * @param  \App\Catagory  $catagory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Catagory $catagory)
+    public function edit($id)
     {
-        //
+        $data = Catagory::find($id);
+        return view('catagory.edit')->with('data',$data);
     }
 
     /**
@@ -81,9 +82,21 @@ class CatagoryController extends Controller
      * @param  \App\Catagory  $catagory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Catagory $catagory)
+    public function update(Request $request, $id)
     {
-        //
+        // validate data
+        $this -> validate($request, array(
+            'catname' => 'required|max:255',
+        ));
+        // store data
+        $cat = Catagory::find($id);
+
+        $cat->name = $request->catname;
+        $cat->save();
+
+        // step 3 : redirect web pages
+        $data = Catagory::all();
+        return view('catagory.index')->with('data',$data);
     }
 
     /**
@@ -95,9 +108,9 @@ class CatagoryController extends Controller
     public function destroy($id)
     {
         $data = Catagory::find($id);
-        $data->delete();
+        $data -> delete();
 
         $data = Catagory::all();
-        return view('catagory.index')->with('data',$data);
+        return redirect('/catagory')->with('data',$data);
     }
 }
